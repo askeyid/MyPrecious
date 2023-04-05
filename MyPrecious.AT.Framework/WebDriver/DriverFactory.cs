@@ -1,42 +1,43 @@
-﻿using MyPrecious.AT.Framework.WebDriver.Enum;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
+using MyPrecious.AT.Framework.Configuration.Model;
+using MyPrecious.AT.Framework.WebDriver.Enum;
 
 namespace MyPrecious.AT.Framework.WebDriver
 {
     public class DriverFactory
     {
-        public IWebDriver CreateDriver(DriverType type) 
+        private readonly DriverInfo _config;
+
+        public DriverFactory(DriverInfo info)
         {
-            switch (type)
-            {
-                case DriverType.Chrome:
-                    return CreateChromeDriver(headless: false);
-                case DriverType.ChromeHeadless:
-                    return CreateChromeDriver(headless: true);
-                case DriverType.Firefox:
-                    return CreateFirefoxDriver(headless: false);
-                case DriverType.FirefoxHeadless:
-                    return CreateFirefoxDriver(headless: true);
-                case DriverType.Edge:
-                    return CreateEdgeDriver(headless: false);
-                case DriverType.EdgeHeadless:
-                    return CreateEdgeDriver(headless: true);
-                default:
-                    throw new NotImplementedException(message: $"'{type} is not implemented yet!");
-            }
+            _config = info;
         }
 
-        #region Drivers
-
-        public IWebDriver CreateChromeDriver(bool headless)
+        public IWebDriver CreateDriver()
         {
-            /// https://www.ghacks.net/2013/10/06/list-useful-google-chrome-command-line-switches/
+            return _config.DriverType switch
+            {
+                DriverType.Chrome => CreateChromeDriver(headless: false),
+                DriverType.ChromeHeadless => CreateChromeDriver(headless: true),
+                DriverType.Firefox => CreateFirefoxDriver(headless: false),
+                DriverType.FirefoxHeadless => CreateFirefoxDriver(headless: true),
+                DriverType.Edge => CreateEdgeDriver(headless: false),
+                DriverType.EdgeHeadless => CreateEdgeDriver(headless: true),
+                DriverType.InternetExplorer => throw new NotImplementedException($"'{_config.DriverType}' is not implemented yet!"),
+                _ => throw new NotImplementedException($"'{_config.DriverType}' is not implemented yet!")
+            };
+        }
+
+        #region MyRegion
+
+        private IWebDriver CreateChromeDriver(bool headless)
+        {
             var options = new ChromeOptions();
 
-            options.AddArgument("start-maximized");
+            options.AddArgument(_config.Maximize ? "start-maximized" : $"window-size={_config.Height},{_config.Width}");
             options.AddArgument("--disable-extensions");
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
             options.SetLoggingPreference(LogType.Performance, LogLevel.All);
@@ -51,10 +52,30 @@ namespace MyPrecious.AT.Framework.WebDriver
             return new ChromeDriver(options);
         }
 
+        private IWebDriver CreateEdgeDriver(bool headless)
+        {
+            var options = new EdgeOptions();
+
+            options.AddArgument(_config.Maximize ? "start-maximized" : $"window-size={_config.Height},{_config.Width}");
+            options.AddArgument("--disable-extensions");
+            options.SetLoggingPreference(LogType.Browser, LogLevel.All);
+            options.SetLoggingPreference(LogType.Performance, LogLevel.All);
+            options.AddUserProfilePreference("download.prompt_for_download", false);
+
+            if (headless)
+            {
+                options.AddArgument("headless");
+                options.AddArgument("disable-gpu");
+            }
+
+            return new EdgeDriver(options);
+        }
+
         private IWebDriver CreateFirefoxDriver(bool headless)
         {
             var options = new FirefoxOptions();
-            options.AddArgument("-start-maximized");
+
+            options.AddArgument(_config.Maximize ? "start-maximized" : $"window-size={_config.Height},{_config.Width}");
             options.AddArgument("-disable-extensions");
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
             options.SetLoggingPreference(LogType.Performance, LogLevel.All);
@@ -68,24 +89,6 @@ namespace MyPrecious.AT.Framework.WebDriver
             driverService.HideCommandPromptWindow = true;
 
             return new FirefoxDriver(driverService, options);
-        }
-
-        private IWebDriver CreateEdgeDriver(bool headless)
-        {
-            var options = new EdgeOptions();
-            options.AddArgument("start-maximized");
-            options.AddArgument("--disable-extensions");
-            options.SetLoggingPreference(LogType.Browser, LogLevel.All);
-            options.SetLoggingPreference(LogType.Performance, LogLevel.All);
-            options.AddUserProfilePreference("download.prompt_for_download", false);
-
-            if (headless)
-            {
-                options.AddArgument("headless");
-                options.AddArgument("disable-gpu");
-            }
-
-            return new EdgeDriver(options);
         }
 
         #endregion
