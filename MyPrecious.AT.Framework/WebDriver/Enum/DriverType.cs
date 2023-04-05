@@ -7,6 +7,7 @@
         Firefox,
         FirefoxHeadless,
         Edge,
-        EdgeHeadless
+        EdgeHeadless,
+        InternetExplorer
     }
 }
