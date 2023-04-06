@@ -1,9 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using MyPrecious.AT.Framework.Configuration;
-using MyPrecious.AT.Framework.Configuration.Model;
+﻿using System.Diagnostics;
 using MyPrecious.AT.Framework.WebDriver.Enum;
-using MyPrecious.AT.Framework.WebDriver;
 using OpenQA.Selenium;
 
 namespace MyPrecious.AT.Framework.WebDriver
@@ -40,15 +36,14 @@ namespace MyPrecious.AT.Framework.WebDriver
                     break;
                 case DriverType.Firefox:
                 case DriverType.FirefoxHeadless:
-                    driverName = "firefox";
+                    driverName = "geckodriver";
                     break;
                 case DriverType.Edge:
                 case DriverType.EdgeHeadless:
-                    driverName = "edge";
+                    driverName = "msedgewebview2";
                     break;
                 case DriverType.InternetExplorer:
-                    driverName = "internetExplorer";
-                    break;
+                    throw new NotImplementedException($"'{type}' is not implemented yet!");
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
