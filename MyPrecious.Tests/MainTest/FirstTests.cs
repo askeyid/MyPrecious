@@ -1,6 +1,10 @@
-﻿using MyPrecious.AT.Framework.WebDriver;
+﻿using MyPrecious.AT.Framework.Logger;
+using MyPrecious.AT.Framework.Models;
+using MyPrecious.AT.Framework.WebDriver;
 using MyPrecious.Tests.Base;
+using MyPrecious.Tests.DataSource;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace MyPrecious.Tests.MainTests
 {
@@ -8,26 +12,40 @@ namespace MyPrecious.Tests.MainTests
     public class FirstTests : UiTestBase
     {
         [Test]
-        public void Test01()
+        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.LoginTestCases))]
+        public void LoginUser(LoginInfo info)
         {
+            Logger.TestStepLog($"Step1 - Open Url '{BaseUrl}'");
             Driver.GetDriver().Navigate().GoToUrl(BaseUrl);
+
+            Logger.TestStepLog($"Step2 - Set UserName '{info.UserName}'");
+            Driver.GetDriver().FindElement(By.CssSelector("#ctl00_CPHContainer_txtUserLogin")).SendKeys(info.UserName);
+
+            Logger.TestStepLog($"Step3 - Set Password '{info.Password}'");
+            Driver.GetDriver().FindElement(By.CssSelector("#ctl00_CPHContainer_txtPassword")).SendKeys(info.Password);
+
+            Logger.TestStepLog("Step3 - Click Login button ");
+            Driver.GetDriver().FindElement(By.CssSelector("#ctl00_CPHContainer_btnLoginn")).Click();
         }
 
         [Test]
         public void Test02()
         {
+            Logger.Info($"Test02");
             Driver.GetDriver().Navigate().GoToUrl(BaseUrl);
         }
 
         [Test]
         public void Test03()
         {
+            Logger.Info($"Test03");
             Driver.GetDriver().Navigate().GoToUrl(BaseUrl);
         }
 
         [Test]
         public void Test04()
         {
+            Logger.Info($"Test04");
             Driver.GetDriver().Navigate().GoToUrl(BaseUrl);
         }
     }

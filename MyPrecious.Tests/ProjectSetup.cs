@@ -1,4 +1,5 @@
-﻿using MyPrecious.AT.Framework.WebDriver;
+﻿using MyPrecious.AT.Framework.Logger;
+using MyPrecious.AT.Framework.WebDriver;
 using NUnit.Framework;
 
 [assembly: LevelOfParallelism(6)]
@@ -10,7 +11,7 @@ namespace MyPrecious.Tests
         [OneTimeSetUp]
         public void ProjectOneTimeSetUp()
         {
-
+            Logger.InitNewLogger(nameof(ProjectSetUp));
         }
 
         [OneTimeTearDown]
