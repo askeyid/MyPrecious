@@ -17,7 +17,7 @@ namespace MyPrecious.Tests
         [OneTimeTearDown]
         public void ProjectOneTimeTearDown()
         {
-            Driver.KillAllDriverProcesses();
+            Driver.KillAllDriverProcesses(DriverSettings.DriverInfo.DriverType);
         }
     }
 }
