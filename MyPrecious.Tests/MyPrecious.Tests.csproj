@@ -25,12 +25,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BaseTests\appsettings.json">
+    <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="BaseTests\selsettings.json">
+    <None Update="selsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BaseTests\" />
   </ItemGroup>
 
 </Project>
