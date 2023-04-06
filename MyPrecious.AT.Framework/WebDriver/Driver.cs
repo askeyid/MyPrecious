@@ -28,7 +28,7 @@ namespace MyPrecious.AT.Framework.WebDriver
             _driver = null;
         }
 
-        public static void KillAllDriverProcess(DriverType type = DriverType.Chrome)
+        public static void KillAllDriverProcesses(DriverType type = DriverType.Chrome)
         {
             string driverName;
 
