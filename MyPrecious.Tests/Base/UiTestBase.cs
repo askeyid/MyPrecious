@@ -1,7 +1,8 @@
-﻿using MyPrecious.AT.Framework.Configuration.Model;
+﻿using MyPrecious.AT.Framework;
+using MyPrecious.AT.Framework.Configuration.Model;
 using MyPrecious.AT.Framework.Configuration;
+using MyPrecious.AT.Framework.Logger;
 using MyPrecious.AT.Framework.WebDriver;
-using MyPrecious.AT.Framework;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -16,6 +17,7 @@ namespace MyPrecious.Tests.Base
         [SetUp]
         public void Setup()
         {
+            Logger.InitNewLogger(TestContext.CurrentContext.Test.FullName); 
             var abc = ConfigurationHelper.GetConfiguration()["EnviromentConf:BaseUrl"];
             var abc2 = ConfigurationHelper.GetBindConfiguration<DriverInfo>(configName: "selsettings.json", section: "DriverConfiguration");
         }
