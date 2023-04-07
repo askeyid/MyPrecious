@@ -1,4 +1,4 @@
-﻿namespace MyPrecious.AT.Framework.WebDriver.Enum
+﻿namespace MyPrecious.AT.Selenium.WebDriver.Enum
 {
     public enum DriverType
     {

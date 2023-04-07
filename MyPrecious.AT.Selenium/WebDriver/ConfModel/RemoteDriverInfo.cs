@@ -1,4 +1,4 @@
-﻿namespace MyPrecious.AT.Framework.Configuration.Model
+﻿namespace MyPrecious.AT.Selenium.WebDriver.ConfModel
 {
     public class RemoteDriverInfo
     {
