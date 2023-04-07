@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyPrecious.AT.Framework\MyPrecious.AT.Framework.csproj" />
+    <ProjectReference Include="..\MyPrecious.AT.Selenium\MyPrecious.AT.Selenium.csproj" />
   </ItemGroup>
 
   <ItemGroup>

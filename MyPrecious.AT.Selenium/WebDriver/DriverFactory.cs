@@ -2,10 +2,10 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
-using MyPrecious.AT.Framework.Configuration.Model;
-using MyPrecious.AT.Framework.WebDriver.Enum;
+using MyPrecious.AT.Selenium.WebDriver.ConfModel;
+using MyPrecious.AT.Selenium.WebDriver.Enum;
 
-namespace MyPrecious.AT.Framework.WebDriver
+namespace MyPrecious.AT.Selenium.WebDriver
 {
     public class DriverFactory
     {

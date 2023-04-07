@@ -1,6 +1,6 @@
-﻿using MyPrecious.AT.Framework.WebDriver.Enum;
+﻿using MyPrecious.AT.Selenium.WebDriver.Enum;
 
-namespace MyPrecious.AT.Framework.Configuration.Model
+namespace MyPrecious.AT.Selenium.WebDriver.ConfModel
 {
     public class DriverInfo
     {
@@ -9,6 +9,7 @@ namespace MyPrecious.AT.Framework.Configuration.Model
         public bool Maximize { get; set; } = true;
         public int Width { get; set; }
         public int Height { get; set; }
+        public TimeoutsInfo TimeoutsInfo { get; set; }
         public RemoteDriverInfo RemoteDriverInfo { get; set; }
     }
 }

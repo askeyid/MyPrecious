@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPrecious.AT.Framework", "MyPrecious.AT.Framework\MyPrecious.AT.Framework.csproj", "{4E222C58-0161-4704-BB6A-FFFBFD76AE00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyPrecious.AT.Framework", "MyPrecious.AT.Framework\MyPrecious.AT.Framework.csproj", "{4E222C58-0161-4704-BB6A-FFFBFD76AE00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPrecious.Tests", "MyPrecious.Tests\MyPrecious.Tests.csproj", "{8A61111B-8B73-41C3-A883-66D1ABE30CB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyPrecious.Tests", "MyPrecious.Tests\MyPrecious.Tests.csproj", "{8A61111B-8B73-41C3-A883-66D1ABE30CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPrecious.AT.Selenium", "MyPrecious.AT.Selenium\MyPrecious.AT.Selenium.csproj", "{DF264354-9F56-436B-8006-92D5B2DD8598}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8A61111B-8B73-41C3-A883-66D1ABE30CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A61111B-8B73-41C3-A883-66D1ABE30CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A61111B-8B73-41C3-A883-66D1ABE30CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF264354-9F56-436B-8006-92D5B2DD8598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF264354-9F56-436B-8006-92D5B2DD8598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF264354-9F56-436B-8006-92D5B2DD8598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF264354-9F56-436B-8006-92D5B2DD8598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

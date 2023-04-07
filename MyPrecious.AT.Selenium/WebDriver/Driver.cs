@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using MyPrecious.AT.Framework.WebDriver.Enum;
+using MyPrecious.AT.Selenium.WebDriver.Enum;
 using OpenQA.Selenium;
 
-namespace MyPrecious.AT.Framework.WebDriver
+namespace MyPrecious.AT.Selenium.WebDriver
 {
     public static class Driver
     {
