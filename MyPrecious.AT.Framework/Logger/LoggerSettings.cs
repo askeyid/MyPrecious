@@ -1,5 +1,5 @@
-﻿using MyPrecious.AT.Framework.Configuration.Model;
-using MyPrecious.AT.Framework.Configuration;
+﻿using MyPrecious.AT.Framework.Models;
+using MyPrecious.AT.Framework.Helpers;
 
 namespace MyPrecious.AT.Framework.Logger
 {

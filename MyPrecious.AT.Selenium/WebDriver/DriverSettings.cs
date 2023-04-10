@@ -1,5 +1,5 @@
 ﻿using MyPrecious.AT.Selenium.WebDriver.ConfModel;
-using MyPrecious.AT.Framework.Configuration;
+using MyPrecious.AT.Framework.Helpers;
 
 namespace MyPrecious.AT.Selenium.WebDriver
 {

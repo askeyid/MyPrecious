@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace MyPrecious.AT.Framework.Configuration
+namespace MyPrecious.AT.Framework.Helpers
 {
     public static class ConfigurationHelper
     {

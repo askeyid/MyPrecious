@@ -1,6 +1,10 @@
-﻿using MyPrecious.AT.Framework.Models;
+﻿using MyPrecious.AT.Framework;
+using MyPrecious.AT.Framework.CustomAttributes;
+using MyPrecious.AT.Framework.Models;
+using MyPrecious.AT.Framework.Models.Enums;
 using MyPrecious.AT.Selenium.WebDriver;
 using MyPrecious.Tests.Base;
+using MyPrecious.Tests.BusinessActions;
 using MyPrecious.Tests.DataSource;
 using MyPrecious.Tests.PageObjects;
 using NUnit.Framework;
@@ -14,17 +18,8 @@ namespace MyPrecious.Tests.MainTests
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.LoginTestCases))]
         public void LoginUser(LoginInfo info)
         {
-            var loginPage = new LoginPage();
-
-            TestStep($"Open Url '{EnvironmentInfo.BaseUrl}'", () =>
-                Driver.GetDriver().Navigate().GoToUrl(EnvironmentInfo.BaseUrl));
-
-            TestStep("Init login, an d assert result", () =>
-            {
-                loginPage.Login(info);
-
-                //Assert login passed or failed
-            });
+            TestStep($"SetLoginForm as {EnvironmentSettings.EnvironmentInfo.DefaultUserName}", () =>
+                new LoginActions().Login(info));
         }
 
         [Test]
@@ -32,8 +27,8 @@ namespace MyPrecious.Tests.MainTests
         {
             var loginPage = new LoginPage();
 
-            TestStep($"Open Url '{EnvironmentInfo.BaseUrl}'", () =>
-                Driver.GetDriver().Navigate().GoToUrl(EnvironmentInfo.BaseUrl));
+            TestStep($"Open Url '{EnvironmentSettings.EnvironmentInfo.BaseUrl}'", () =>
+                Driver.GetDriver().Navigate().GoToUrl(EnvironmentSettings.EnvironmentInfo.BaseUrl));
 
             TestStep("Verify Ui login box", () =>
             {
@@ -41,10 +36,17 @@ namespace MyPrecious.Tests.MainTests
                 {
                     Assert.AreEqual(loginPage.UserLogin.ExpectedTitle, loginPage.UserLogin.Title);
                     Assert.AreEqual(loginPage.Password.ExpectedTitle, loginPage.Password.Title);
-
                     Assert.AreEqual(loginPage.BtnLogin.ButtonText, loginPage.BtnLogin.Value);
                 });
             });
+        }
+
+        [Test]
+        [SkipIfEnvironment(EnvironmentType.Stg)]
+        public void TestSkipIfEnvironmentAttribute()
+        {
+            TestStep($"Open Url '{EnvironmentSettings.EnvironmentInfo.BaseUrl}'", () =>
+                Driver.GetDriver().Navigate().GoToUrl(EnvironmentSettings.EnvironmentInfo.BaseUrl));
         }
     }
 }

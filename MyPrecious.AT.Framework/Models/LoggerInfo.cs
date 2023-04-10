@@ -1,4 +1,4 @@
-﻿namespace MyPrecious.AT.Framework.Configuration.Model
+﻿namespace MyPrecious.AT.Framework.Models
 {
     public class LoggerInfo
     {
