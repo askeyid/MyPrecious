@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using MyPrecious.AT.Framework.Logger;
 using MyPrecious.AT.Selenium.WebDriver.Enum;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace MyPrecious.AT.Selenium.WebDriver
@@ -18,10 +20,14 @@ namespace MyPrecious.AT.Selenium.WebDriver
 
         public static void QuiteDriver()
         {
-            _driver.Close();
-            _driver.Quit();
+            if (_driver != null)
+            {
+                _driver.Close();
+                _driver.Quit();
+                _driver.Dispose();
 
-            _driver = null;
+                _driver = null;
+            }
         }
 
         public static void KillAllDriverProcesses(DriverType type = DriverType.Chrome)
@@ -52,6 +58,36 @@ namespace MyPrecious.AT.Selenium.WebDriver
             {
                 chromeDriverProcess.Kill();
             }
+        }
+
+        public static string MakeScreenShot(string name = null)
+        {
+            var imagePath = $"{WriteLog.GetTestDirectoryPath().FullName}\\{name ?? TestContext.CurrentContext.Test.Name}_{DateTime.Now.Ticks}.png";
+
+            var image = ((ITakesScreenshot)GetDriver()).GetScreenshot();
+            image.SaveAsFile(imagePath);
+
+            return imagePath;
+        }
+
+        public static string SaveBrowserLog(string type)
+        {
+            var browserLogPath =
+                $"{WriteLog.GetTestDirectoryPath().FullName}\\SELENIUM_LOG_{type.ToUpperInvariant()}_{DateTime.Now.Ticks}.txt";
+
+            var logs = GetDriver().Manage().Logs.GetLog(type);
+
+            using var file = new StreamWriter(browserLogPath);
+
+            foreach (var log in logs)
+            {
+                var message = log.Message;
+                //WriteLog.Debug(message); NOTE: SHOULD WE PRINT THIS? 
+
+                file.WriteLine(message);
+            }
+
+            return browserLogPath;
         }
     }
 }

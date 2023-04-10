@@ -1,6 +1,4 @@
 ﻿using MyPrecious.AT.Framework;
-using MyPrecious.AT.Framework.Configuration.Model;
-using MyPrecious.AT.Framework.Configuration;
 using MyPrecious.AT.Framework.Logger;
 using MyPrecious.AT.Selenium.WebDriver;
 using NUnit.Framework;
@@ -12,8 +10,6 @@ namespace MyPrecious.Tests.Base
     [Parallelizable(scope: ParallelScope.All)]
     public class UiTestBase : TestBase
     {
-        protected EnvironmentInfo EnvironmentInfo = ConfigurationHelper.GetBindConfiguration<EnvironmentInfo>("EnvironmentConf");
-
         [SetUp]
         public void Setup()
         {
@@ -23,10 +19,22 @@ namespace MyPrecious.Tests.Base
         [TearDown]
         public void TearDown()
         {
-            var browserLogs = Driver.GetDriver().Manage().Logs.GetLog(LogType.Browser);
-            var performanceLogs = Driver.GetDriver().Manage().Logs.GetLog(LogType.Performance);
-
             Driver.QuiteDriver();
+        }
+
+        protected override void HandleException()
+        {
+            try
+            {
+                TestAttachedFilePaths.Add(Driver.MakeScreenShot());
+                TestAttachedFilePaths.Add(WriteLog.GetLogFilePath(TestContext.CurrentContext.Test.FullName));
+                TestAttachedFilePaths.Add(Driver.SaveBrowserLog(LogType.Browser));
+                TestAttachedFilePaths.Add(Driver.SaveBrowserLog(LogType.Performance));
+            }
+            catch (Exception ex)
+            {
+                WriteLog.Error($"Take ScreenShot or Browser Logs failed!, {ex}");
+            }
         }
     }
 }
