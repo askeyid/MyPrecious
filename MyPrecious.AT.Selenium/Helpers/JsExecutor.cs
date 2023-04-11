@@ -2,7 +2,6 @@
 using MyPrecious.AT.Selenium.WebDriver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
-using System;
 using System.Globalization;
 
 namespace MyPrecious.AT.Selenium.Helpers

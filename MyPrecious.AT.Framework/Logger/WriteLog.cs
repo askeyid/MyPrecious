@@ -3,9 +3,6 @@ using log4net.Appender;
 using log4net.Layout;
 using log4net.Repository;
 using OpenQA.Selenium;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace MyPrecious.AT.Framework.Logger
 {

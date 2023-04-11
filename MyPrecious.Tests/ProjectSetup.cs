@@ -2,16 +2,16 @@
 using MyPrecious.AT.Selenium.WebDriver;
 using NUnit.Framework;
 
-[assembly: LevelOfParallelism(6)]
+[assembly: LevelOfParallelism(8)]
 namespace MyPrecious.Tests
 {
     [SetUpFixture]
-    public class ProjectSetUp
+    public class ProjectSetup
     {
         [OneTimeSetUp]
         public void ProjectOneTimeSetUp()
         {
-            WriteLog.InitNewLogger(nameof(ProjectSetUp));
+            WriteLog.InitNewLogger(nameof(ProjectSetup));
         }
 
         [OneTimeTearDown]
