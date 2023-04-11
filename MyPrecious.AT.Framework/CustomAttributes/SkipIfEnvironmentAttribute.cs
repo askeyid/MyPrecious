@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using NUnit.Framework;
-using System;
 using MyPrecious.AT.Framework.Models.Enums;
 
 namespace MyPrecious.AT.Framework.CustomAttributes

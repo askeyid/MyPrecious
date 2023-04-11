@@ -4,6 +4,8 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using MyPrecious.AT.Selenium.WebDriver.ConfModel;
 using MyPrecious.AT.Selenium.WebDriver.Enum;
+using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 
 namespace MyPrecious.AT.Selenium.WebDriver
 {
@@ -35,6 +37,7 @@ namespace MyPrecious.AT.Selenium.WebDriver
 
         private IWebDriver CreateChromeDriver(bool headless)
         {
+            IWebDriver driver; 
             var options = new ChromeOptions();
 
             options.AddArgument(_config.Maximize ? "start-maximized" : $"window-size={_config.Height},{_config.Width}");
@@ -43,13 +46,31 @@ namespace MyPrecious.AT.Selenium.WebDriver
             options.SetLoggingPreference(LogType.Performance, LogLevel.All);
             options.AddUserProfilePreference("download.prompt_for_download", false);
 
-            if (headless)
+            if (!_config.RunRemote && headless)
             {
                 options.AddArgument("headless");
                 options.AddArgument("disable-gpu");
             }
 
-            return new ChromeDriver(options);
+            if (_config.RunRemote)
+            {
+                var ltOptions = new Dictionary<string, object>();
+
+                ltOptions.Add("os", "Windows");
+                ltOptions.Add("osVersion", "10");
+                ltOptions.Add("local", "false");
+                ltOptions.Add("seleniumVersion", _config.RemoteDriverInfo.SeleniumVersion);
+                ltOptions.Add("enableVNC", _config.RemoteDriverInfo.EnableVNC);
+                ltOptions.Add("name", TestContext.CurrentContext.Test.Name);
+                ltOptions.Add("enableVideo", _config.RemoteDriverInfo.EnableVideo);
+                options.AddAdditionalOption("selenoid:options", ltOptions);
+
+                driver = new RemoteWebDriver(_config.RemoteDriverInfo.Url, options);
+            }
+            else
+                driver = new ChromeDriver(options);
+
+            return driver;
         }
 
         private IWebDriver CreateEdgeDriver(bool headless)
@@ -68,27 +89,50 @@ namespace MyPrecious.AT.Selenium.WebDriver
                 options.AddArgument("disable-gpu");
             }
 
+            if (_config.RunRemote)
+                throw new NotImplementedException("EdgeDriver is not ready to run on remote");
+
             return new EdgeDriver(options);
         }
 
         private IWebDriver CreateFirefoxDriver(bool headless)
         {
+            IWebDriver driver; 
             var options = new FirefoxOptions();
 
-            options.AddArgument(_config.Maximize ? "start-maximized" : $"window-size={_config.Height},{_config.Width}");
-            options.AddArgument("-disable-extensions");
+            options.AddArgument($"window-size={_config.Height},{_config.Width}");
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
             options.SetLoggingPreference(LogType.Performance, LogLevel.All);
-
-            if (headless)
-            {
-                options.AddArgument("-headless");
-            }
 
             var driverService = FirefoxDriverService.CreateDefaultService();
             driverService.HideCommandPromptWindow = true;
 
-            return new FirefoxDriver(driverService, options);
+            if (!_config.RunRemote && headless)
+            {
+                options.AddArgument("-headless");
+            }
+
+            if (_config.RunRemote)
+            {
+                var ltOptions = new Dictionary<string, object>();
+                ltOptions.Add("os", "Windows");
+                ltOptions.Add("osVersion", "10");
+                ltOptions.Add("local", "false");
+                ltOptions.Add("seleniumVersion", _config.RemoteDriverInfo.SeleniumVersion);
+                ltOptions.Add("enableVNC", _config.RemoteDriverInfo.EnableVNC);
+                ltOptions.Add("name", TestContext.CurrentContext.Test.Name);
+                ltOptions.Add("enableVideo", _config.RemoteDriverInfo.EnableVideo);
+                options.AddAdditionalOption("selenoid:options", ltOptions);
+
+                driver = new RemoteWebDriver(_config.RemoteDriverInfo.Url, options);
+            }
+            else
+                driver = new FirefoxDriver(driverService, options);
+
+            if(_config.Maximize)
+                driver.Manage().Window.Maximize();
+
+            return driver;
         }
 
         #endregion

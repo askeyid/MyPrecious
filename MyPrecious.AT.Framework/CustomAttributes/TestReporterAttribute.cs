@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework.Interfaces;
 using NUnit.Framework;
-using System;
 
 namespace MyPrecious.AT.Framework.CustomAttributes
 {

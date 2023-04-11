@@ -37,6 +37,8 @@ namespace MyPrecious.AT.Framework
             {
                 watch.Stop();
                 WriteLog.Error($"STEP --- [{stepName}] --- FAILED, [EXECUTION_TIME: {watch.Elapsed.Seconds}s], {WriteLog.NewLine(2)} ERROR: {ex.Message}");
+
+                throw;
             }
         }
 

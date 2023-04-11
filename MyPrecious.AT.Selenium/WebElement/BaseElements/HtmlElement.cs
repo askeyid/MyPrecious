@@ -1,10 +1,7 @@
 ﻿using MyPrecious.AT.Framework.Logger;
 using MyPrecious.AT.Selenium.WebDriver;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 
 namespace MyPrecious.AT.Selenium.WebElement.BaseElements
 {

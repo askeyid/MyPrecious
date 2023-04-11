@@ -1,5 +1,4 @@
 ﻿using MyPrecious.AT.Framework.Logger;
-using System;
 
 namespace MyPrecious.AT.Framework.Helpers
 {
