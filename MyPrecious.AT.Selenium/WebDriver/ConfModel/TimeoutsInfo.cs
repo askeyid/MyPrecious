@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MyPrecious.AT.Selenium.WebDriver.ConfModel
+﻿namespace MyPrecious.AT.Selenium.WebDriver.ConfModel
 {
     public class TimeoutsInfo
     {

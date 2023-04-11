@@ -1,5 +1,4 @@
 ﻿using MyPrecious.AT.Framework;
-using MyPrecious.AT.Framework.CustomAttributes;
 using MyPrecious.AT.Framework.CustomExceptions;
 using MyPrecious.AT.Framework.Extensions;
 using MyPrecious.AT.Framework.Logger;
@@ -9,7 +8,6 @@ using MyPrecious.AT.Selenium.Helpers;
 using MyPrecious.AT.Selenium.WebDriver;
 using MyPrecious.Tests.Base;
 using MyPrecious.Tests.BusinessActions;
-using MyPrecious.Tests.DataSource;
 using MyPrecious.Tests.PageObjects;
 using NUnit.Framework;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using MyPrecious.AT.Framework.Helpers;
+﻿using MyPrecious.AT.Framework.Helpers;
 using MyPrecious.AT.Framework.Models;
 
 namespace MyPrecious.AT.Framework

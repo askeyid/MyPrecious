@@ -34,6 +34,9 @@ namespace MyPrecious.AT.Selenium.WebDriver
         {
             string driverName;
 
+            if (DriverSettings.DriverInfo.RunRemote)
+                return; 
+            
             switch (type)
             {
                 case DriverType.Chrome:

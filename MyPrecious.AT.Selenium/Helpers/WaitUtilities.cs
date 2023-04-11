@@ -1,7 +1,6 @@
 ﻿using MyPrecious.AT.Selenium.WebDriver;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
-using System;
 
 namespace MyPrecious.AT.Selenium.Helpers
 {

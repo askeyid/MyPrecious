@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MyPrecious.AT.Framework.CustomAttributes
+﻿namespace MyPrecious.AT.Framework.CustomAttributes
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class DateStringFormatAttribute : Attribute
