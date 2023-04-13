@@ -1,8 +1,8 @@
 {
   "DriverConfiguration": {
     "DriverType": "0", // 0 - Chrome, 1 - ChromeHeadless, 2 - Firefox, 3 - FirefoxHeadless, 4 - Edge, 5 - EdgeHeadless, 6 - InternetExplorer
-    "RunRemote": false,
-    "Maximize": false,
+    "RunRemote": true,
+    "Maximize": true,
     "Width": 500,
     "Height": 800,
     "RemoteDriverInfo": {
@@ -11,8 +11,8 @@
       "EnableVNC": true,
       "EnableVideo": false,
       "SeleniumVersion": "4.5.1",
-      "BrowserVersion": "105.0",
-      "Url": "http://18.224.21.209:4444/wd/hub"
+      "BrowserVersion": "111.0",
+      "Url": "http://13.48.126.165:4444/wd/hub"
     },
     "TimeoutsInfo": {
       "ElementTimeout": "00:00:15",
