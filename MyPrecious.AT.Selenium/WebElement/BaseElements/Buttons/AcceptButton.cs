@@ -22,7 +22,7 @@ namespace MyPrecious.AT.Selenium.WebElement.BaseElements.Buttons
 
         #region Settable parameters
 
-        public string? ButtonText { get; set; }
+        public string ButtonText { get; set; }
         #endregion
     }
 }

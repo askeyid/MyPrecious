@@ -1,7 +1,7 @@
 {
   "DriverConfiguration": {
-    "DriverType": "0", // 0 - Chrome, 1 - ChromeHeadless, 2 - Firefox, 3 - FirefoxHeadless, 4 - Edge, 5 - EdgeHeadless, 6 - InternetExplorer
-    "RunRemote": true,
+    "DriverType": "1", // 0 - Chrome, 1 - ChromeHeadless, 2 - Firefox, 3 - FirefoxHeadless, 4 - Edge, 5 - EdgeHeadless, 6 - InternetExplorer
+    "RunRemote": false,
     "Maximize": true,
     "Width": 500,
     "Height": 800,

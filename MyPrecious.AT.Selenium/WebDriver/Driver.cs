@@ -8,7 +8,7 @@ namespace MyPrecious.AT.Selenium.WebDriver
 {
     public static class Driver
     {
-        [ThreadStatic] private static IWebDriver? _driver;
+        [ThreadStatic] private static IWebDriver _driver;
         public static IWebDriver GetDriver()
         {
             if (_driver != null) return _driver;
@@ -63,7 +63,7 @@ namespace MyPrecious.AT.Selenium.WebDriver
             }
         }
 
-        public static string MakeScreenShot(string? name = null)
+        public static string MakeScreenShot(string name = null)
         {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             var imagePath = $"{WriteLog.GetTestDirectoryPath().FullName}\\{name ?? TestContext.CurrentContext.Test.Name}_{DateTime.Now.Ticks}.png";

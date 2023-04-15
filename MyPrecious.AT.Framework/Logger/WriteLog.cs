@@ -9,17 +9,17 @@ namespace MyPrecious.AT.Framework.Logger
     public static class WriteLog
     {
         [ThreadStatic]
-        private static ILog _log = (ILog)new object();
+        private static ILog _log;
 
         [ThreadStatic]
-        private static DirectoryInfo? _testDirectory;
+        private static DirectoryInfo _testDirectory;
 
         public static ILog GetLogger()
         {
             return _log;
         }
 
-        public static DirectoryInfo? GetTestDirectoryPath()
+        public static DirectoryInfo GetTestDirectoryPath()
         {
             return _testDirectory;
         }

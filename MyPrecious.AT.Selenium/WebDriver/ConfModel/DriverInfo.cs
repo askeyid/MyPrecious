@@ -9,7 +9,7 @@ namespace MyPrecious.AT.Selenium.WebDriver.ConfModel
         public bool Maximize { get; set; } = true;
         public int Width { get; set; }
         public int Height { get; set; }
-        public TimeoutsInfo? TimeoutsInfo { get; set; }
-        public RemoteDriverInfo? RemoteDriverInfo { get; set; }
+        public TimeoutsInfo TimeoutsInfo { get; set; }
+        public RemoteDriverInfo RemoteDriverInfo { get; set; }
     }
 }
