@@ -16,6 +16,7 @@ namespace MyPrecious.Tests.MainTests
     {
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.LoginTestCases))]
+        [SkipIfEnvironment(EnvironmentType.Stg)]
         public void LoginUser(LoginInfo info)
         {
             TestStep($"SetLoginForm as {EnvironmentSettings.EnvironmentInfo.DefaultUserName}", () =>

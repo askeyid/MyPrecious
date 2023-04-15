@@ -1,4 +1,5 @@
 ﻿using MyPrecious.AT.Framework;
+using MyPrecious.AT.Framework.CustomAttributes;
 using MyPrecious.AT.Framework.CustomExceptions;
 using MyPrecious.AT.Framework.Extensions;
 using MyPrecious.AT.Framework.Logger;
@@ -17,6 +18,7 @@ namespace MyPrecious.Tests.MainTests
     public class SecondTests : UiTestBase
     {
         [Test]
+        [SkipIfEnvironment(EnvironmentType.Stg)]
         public void SignUpTest()
         {
             var user = new LoginInfo()
@@ -30,6 +32,7 @@ namespace MyPrecious.Tests.MainTests
         }
 
         [Test]
+        [SkipIfEnvironment(EnvironmentType.Stg)]
         public void TestEnumExtensions()
         {
             var findEnumByDescription = "DEV Environment";
@@ -48,6 +51,7 @@ namespace MyPrecious.Tests.MainTests
         }
 
         [Test]
+        [SkipIfEnvironment(EnvironmentType.Stg)]
         public void ConditionIsMetTest()
         {
             TestStep("Test Condition Is Met - PASS", () =>

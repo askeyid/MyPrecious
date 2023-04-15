@@ -2,7 +2,7 @@
 using MyPrecious.AT.Selenium.WebDriver;
 using NUnit.Framework;
 
-[assembly: LevelOfParallelism(8)]
+[assembly: LevelOfParallelism(2)]
 namespace MyPrecious.Tests
 {
     [SetUpFixture]
