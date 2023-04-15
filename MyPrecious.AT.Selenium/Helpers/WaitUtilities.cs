@@ -1,12 +1,13 @@
 ﻿using MyPrecious.AT.Selenium.WebDriver;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
+#nullable disable
 
 namespace MyPrecious.AT.Selenium.Helpers
 {
     public static class WaitUtilities
     {
-        public static TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, TimeSpan? timeout = null /*ElementTimeout*/, string message = null)
+        public static TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, TimeSpan? timeout = null /*ElementTimeout*/, string message = "")
         {
             timeout ??= DriverSettings.DriverInfo.TimeoutsInfo.ElementTimeout;
 
@@ -17,7 +18,7 @@ namespace MyPrecious.AT.Selenium.Helpers
             return element;
         }
 
-        public static void ConditionIsMet(Func<IWebDriver, bool> condition, TimeSpan? timeout = null, string message = null)
+        public static void ConditionIsMet(Func<IWebDriver, bool> condition, TimeSpan? timeout = null, string message = "")
         {
             timeout ??= DriverSettings.DriverInfo.TimeoutsInfo.ElementTimeout;
 

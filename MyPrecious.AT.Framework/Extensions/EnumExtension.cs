@@ -2,6 +2,7 @@
 using System.Data;
 using System.Reflection;
 using MyPrecious.AT.Framework.CustomAttributes;
+#nullable disable
 
 namespace MyPrecious.AT.Framework.Extensions
 {
@@ -18,7 +19,6 @@ namespace MyPrecious.AT.Framework.Extensions
 
             return value.ToString();
         }
-
 
         /// <summary>
         /// Get value of Custom Attribute DateStringFormatAttribute

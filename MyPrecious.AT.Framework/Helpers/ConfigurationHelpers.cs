@@ -12,7 +12,7 @@ namespace MyPrecious.AT.Framework.Helpers
                 .AddJsonFile(configName, optional: true, reloadOnChange: true).Build();
         }
 
-        public static T GetBindConfiguration<T>(string section, string configName = "appsettings.json")
+        public static T? GetBindConfiguration<T>(string section, string configName = "appsettings.json")
         {
             return GetConfiguration(configName)
                 .GetSection(section)

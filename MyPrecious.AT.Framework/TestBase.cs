@@ -8,7 +8,7 @@ namespace MyPrecious.AT.Framework
     public abstract class TestBase
     {
         [ThreadStatic]
-        protected static List<string> TestAttachedFilePaths;
+        protected static List<string>? TestAttachedFilePaths;
 
         public virtual void TestStep(string stepName, Action action)
         {

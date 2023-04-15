@@ -9,17 +9,17 @@ namespace MyPrecious.AT.Framework.Logger
     public static class WriteLog
     {
         [ThreadStatic]
-        private static ILog _log;
+        private static ILog _log = (ILog)new object();
 
         [ThreadStatic]
-        private static DirectoryInfo _testDirectory;
+        private static DirectoryInfo? _testDirectory;
 
         public static ILog GetLogger()
         {
             return _log;
         }
 
-        public static DirectoryInfo GetTestDirectoryPath()
+        public static DirectoryInfo? GetTestDirectoryPath()
         {
             return _testDirectory;
         }
@@ -103,12 +103,12 @@ namespace MyPrecious.AT.Framework.Logger
 
             ILoggerRepository repository = LogManager.CreateRepository($"Log4net.{fileName}");
 
-            SetLevel(repository.Name, LoggerSettings.LoggerInfo.LogLevel);
+            SetLevel(repository.Name, LoggerSettings.LoggerInfo.LogLevel ?? "ALL");
             AddAppender(repository.Name, CreateFileAppender($"{fileName}", $"{_testDirectory.FullName}\\{fileName}_{DateTime.Now:MMDDHHmmss}.log"));
             AddAppender(repository.Name, CreateConsoleAppender($"{fileName}"));
         }
 
-        private static void SetLevel(string repositoryName, string levelName, string name = default)
+        private static void SetLevel(string repositoryName, string levelName, string name = "")
         {
             _log = LogManager.GetLogger(repositoryName, name ?? string.Empty);
             log4net.Repository.Hierarchy.Logger l = (log4net.Repository.Hierarchy.Logger)_log.Logger;
@@ -117,7 +117,7 @@ namespace MyPrecious.AT.Framework.Logger
             l.Level = l.Hierarchy.LevelMap[levelName];
         }
 
-        public static void AddAppender(string repositoryName, IAppender appender, string name = default)
+        public static void AddAppender(string repositoryName, IAppender appender, string name = "")
         {
             _log = LogManager.GetLogger(repositoryName, name ?? string.Empty);
 

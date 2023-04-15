@@ -2,6 +2,7 @@
 using MyPrecious.AT.Selenium.WebElement.BaseElements;
 using OpenQA.Selenium;
 using System.Text.RegularExpressions;
+#nullable disable
 
 namespace MyPrecious.AT.Selenium.Helpers
 {
