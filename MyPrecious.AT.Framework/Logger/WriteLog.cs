@@ -88,7 +88,13 @@ namespace MyPrecious.AT.Framework.Logger
                 Debug($"[JAVA_SCRIPT_DIAGNOSTIC] {message}" + NewLine(emptyLineCount));
         }
 
-        public static void TestStepLog(string message, int emptyLineCount = 3)
+        public static void TestLog(string message, int emptyLineCount = 1)
+        {
+            if (LoggerSettings.LoggerInfo.TestLog)
+                Info($"[TEST_LOG] {message}" + NewLine(emptyLineCount));
+        }
+
+        public static void TestStepLog(string message, int emptyLineCount = 1)
         {
             if (LoggerSettings.LoggerInfo.TestStepLog)
                 Info($"[TEST_STEP_LOG] {message}" + NewLine(emptyLineCount));
@@ -104,7 +110,7 @@ namespace MyPrecious.AT.Framework.Logger
             ILoggerRepository repository = LogManager.CreateRepository($"Log4net.{fileName}");
 
             SetLevel(repository.Name, LoggerSettings.LoggerInfo.LogLevel ?? "ALL");
-            AddAppender(repository.Name, CreateFileAppender($"{fileName}", $"{_testDirectory.FullName}\\{fileName}_{DateTime.Now:MMDDHHmmss}.log"));
+            AddAppender(repository.Name, CreateFileAppender($"{fileName}", $"{_testDirectory.FullName}\\{fileName}_{DateTime.Now:MMddHHmmss}.log"));
             AddAppender(repository.Name, CreateConsoleAppender($"{fileName}"));
         }
 

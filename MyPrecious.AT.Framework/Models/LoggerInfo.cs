@@ -8,5 +8,6 @@
         public bool TestStepLog { get; set; } = true;
         public bool ElementDiagnostic { get; set; } = true;
         public bool JavascriptDiagnostics { get; set; } = true;
+        public bool TestLog { get; internal set; } = true;
     }
 }

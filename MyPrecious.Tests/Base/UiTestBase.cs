@@ -14,12 +14,14 @@ namespace MyPrecious.Tests.Base
         public void Setup()
         {
             WriteLog.InitNewLogger(TestContext.CurrentContext.Test.FullName);
+            WriteLog.TestLog($"STARTED [{TestContext.CurrentContext.Test.FullName}]");
         }
 
         [TearDown]
         public void TearDown()
         {
             Driver.QuiteDriver();
+            WriteLog.TestLog($"ENDED {TestContext.CurrentContext.Result.Outcome.Status.ToString().ToUpper()} [{TestContext.CurrentContext.Test.FullName}]");
         }
 
         protected override void HandleException()
