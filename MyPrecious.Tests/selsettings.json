@@ -1,7 +1,7 @@
 {
   "DriverConfiguration": {
     "DriverType": "0", // 0 - Chrome, 1 - ChromeHeadless, 2 - Firefox, 3 - FirefoxHeadless, 4 - Edge, 5 - EdgeHeadless, 6 - InternetExplorer
-    "RunRemote": true,
+    "RunRemote": false,
     "Maximize": true,
     "Width": 500,
     "Height": 800,
@@ -10,7 +10,7 @@
       "AccessKey": "",
       "EnableVNC": true,
       "EnableVideo": false,
-      "SeleniumVersion": "4.5.1",
+      "SeleniumVersion": "4.8.2",
       "BrowserVersion": "111.0",
       "Url": "http://13.50.194.143:4444/wd/hub"
     },
