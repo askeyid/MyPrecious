@@ -17,26 +17,26 @@ namespace MyPrecious.AT.Framework
             try
             {
                 watch.Start();
-                WriteLog.TestStepLog($"STEP --- [{stepName}] --- STARTED");
+                WriteLog.TestStepLog($"STARTED [{stepName}]", emptyLineCount: 0);
                 action.Invoke();
 
                 watch.Stop();
                 WriteLog.TestStepLog(
-                    $"STEP --- [{stepName}] --- ENDED SUCCESSFULLY, [EXECUTION_TIME: {watch.Elapsed.Seconds}s]");
+                    $"ENDED SUCCESSFULLY [{stepName}], [EXECUTION_TIME: {watch.Elapsed.Seconds}s]");
             }
             catch (FatalTestingException ex)
             {
                 watch.Stop();
 
                 HandleException();
-                WriteLog.Error($"STEP --- [{stepName}] --- FAILED, [EXECUTION_TIME: {watch.Elapsed.Seconds}s], {WriteLog.NewLine(2)} ERROR: {ex.Message}");
+                WriteLog.Error($"FAILED [{stepName}], [EXECUTION_TIME: {watch.Elapsed.Seconds}s], {WriteLog.NewLine()} ERROR: {ex.Message}{WriteLog.NewLine()}");
 
                 throw;
             }
             catch (Exception ex)
             {
                 watch.Stop();
-                WriteLog.Error($"STEP --- [{stepName}] --- FAILED, [EXECUTION_TIME: {watch.Elapsed.Seconds}s], {WriteLog.NewLine(2)} ERROR: {ex.Message}");
+                WriteLog.Error($"FAILED [{stepName}], [EXECUTION_TIME: {watch.Elapsed.Seconds}s], {WriteLog.NewLine()} ERROR: {ex.Message}{WriteLog.NewLine()}");
 
                 throw;
             }

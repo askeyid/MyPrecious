@@ -65,7 +65,9 @@ namespace MyPrecious.AT.Selenium.WebDriver
 
         public static string MakeScreenShot(string name = null)
         {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var imagePath = $"{WriteLog.GetTestDirectoryPath().FullName}\\{name ?? TestContext.CurrentContext.Test.Name}_{DateTime.Now.Ticks}.png";
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             var image = ((ITakesScreenshot)GetDriver()).GetScreenshot();
             image.SaveAsFile(imagePath);
@@ -75,8 +77,10 @@ namespace MyPrecious.AT.Selenium.WebDriver
 
         public static string SaveBrowserLog(string type)
         {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var browserLogPath =
                 $"{WriteLog.GetTestDirectoryPath().FullName}\\SELENIUM_LOG_{type.ToUpperInvariant()}_{DateTime.Now.Ticks}.txt";
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             var logs = GetDriver().Manage().Logs.GetLog(type);
 

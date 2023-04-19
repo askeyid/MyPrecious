@@ -2,6 +2,7 @@
 using MyPrecious.AT.Selenium.WebDriver;
 using OpenQA.Selenium;
 using System.Drawing;
+#nullable disable
 
 namespace MyPrecious.AT.Selenium.WebElement.BaseElements
 {
@@ -172,7 +173,7 @@ namespace MyPrecious.AT.Selenium.WebElement.BaseElements
             }
         }
 
-        public Point Location
+        public Point? Location
         {
             get
             {
@@ -183,7 +184,7 @@ namespace MyPrecious.AT.Selenium.WebElement.BaseElements
             }
         }
 
-        public Size Size
+        public Size? Size
         {
             get
             {

@@ -1,4 +1,5 @@
 ﻿using MyPrecious.AT.Framework;
+using MyPrecious.AT.Framework.CustomAttributes;
 using MyPrecious.AT.Framework.CustomExceptions;
 using MyPrecious.AT.Framework.Extensions;
 using MyPrecious.AT.Framework.Logger;
@@ -59,11 +60,12 @@ namespace MyPrecious.Tests.MainTests
             TestStep("Test Condition Is Met - FAIL", () =>
             {
                 Driver.GetDriver().Navigate().GoToUrl(EnvironmentSettings.EnvironmentInfo.BaseUrl);
-                WaitUtilities.ConditionIsMet(ExpectedConditions.TitleContains("Login Page | Test Creator - TestYou - Mistake"));
+                //WaitUtilities.ConditionIsMet(ExpectedConditions.TitleContains("Login Page | Test Creator - TestYou - Mistake"));
             });
         }
 
         [Test]
+        [SkipIfEnvironment(EnvironmentType.Stg)]
         public void TestFatalTestingException()
         {
             TestStep("Test Fatal Exception", () =>

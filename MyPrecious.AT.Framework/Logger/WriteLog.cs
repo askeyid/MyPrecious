@@ -88,7 +88,13 @@ namespace MyPrecious.AT.Framework.Logger
                 Debug($"[JAVA_SCRIPT_DIAGNOSTIC] {message}" + NewLine(emptyLineCount));
         }
 
-        public static void TestStepLog(string message, int emptyLineCount = 3)
+        public static void TestLog(string message, int emptyLineCount = 1)
+        {
+            if (LoggerSettings.LoggerInfo.TestLog)
+                Info($"[TEST_LOG] {message}" + NewLine(emptyLineCount));
+        }
+
+        public static void TestStepLog(string message, int emptyLineCount = 1)
         {
             if (LoggerSettings.LoggerInfo.TestStepLog)
                 Info($"[TEST_STEP_LOG] {message}" + NewLine(emptyLineCount));
@@ -103,12 +109,12 @@ namespace MyPrecious.AT.Framework.Logger
 
             ILoggerRepository repository = LogManager.CreateRepository($"Log4net.{fileName}");
 
-            SetLevel(repository.Name, LoggerSettings.LoggerInfo.LogLevel);
-            AddAppender(repository.Name, CreateFileAppender($"{fileName}", $"{_testDirectory.FullName}\\{fileName}_{DateTime.Now:MMDDHHmmss}.log"));
+            SetLevel(repository.Name, LoggerSettings.LoggerInfo.LogLevel ?? "ALL");
+            AddAppender(repository.Name, CreateFileAppender($"{fileName}", $"{_testDirectory.FullName}\\{fileName}_{DateTime.Now:MMddHHmmss}.log"));
             AddAppender(repository.Name, CreateConsoleAppender($"{fileName}"));
         }
 
-        private static void SetLevel(string repositoryName, string levelName, string name = default)
+        private static void SetLevel(string repositoryName, string levelName, string name = "")
         {
             _log = LogManager.GetLogger(repositoryName, name ?? string.Empty);
             log4net.Repository.Hierarchy.Logger l = (log4net.Repository.Hierarchy.Logger)_log.Logger;
@@ -117,7 +123,7 @@ namespace MyPrecious.AT.Framework.Logger
             l.Level = l.Hierarchy.LevelMap[levelName];
         }
 
-        public static void AddAppender(string repositoryName, IAppender appender, string name = default)
+        public static void AddAppender(string repositoryName, IAppender appender, string name = "")
         {
             _log = LogManager.GetLogger(repositoryName, name ?? string.Empty);
 

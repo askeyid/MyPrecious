@@ -11,7 +11,7 @@ namespace MyPrecious.AT.Framework.CustomAttributes
         private EnvironmentType _env;
         private string _message;
 
-        public SkipIfEnvironmentAttribute(EnvironmentType type, string message = null)
+        public SkipIfEnvironmentAttribute(EnvironmentType type, string message = "")
         {
             _env = type;
             _message = message;
