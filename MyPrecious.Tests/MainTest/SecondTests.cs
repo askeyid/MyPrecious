@@ -18,6 +18,7 @@ namespace MyPrecious.Tests.MainTests
     public class SecondTests : UiTestBase
     {
         [Test]
+        [Category("Smoke")]
         public void SignUpTest()
         {
             var user = new LoginInfo()
@@ -31,6 +32,7 @@ namespace MyPrecious.Tests.MainTests
         }
 
         [Test]
+        [Category("Regression")]
         public void TestEnumExtensions()
         {
             var findEnumByDescription = "DEV Environment";
@@ -49,6 +51,7 @@ namespace MyPrecious.Tests.MainTests
         }
 
         [Test]
+        [Category("Regression")]
         public void ConditionIsMetTest()
         {
             TestStep("Test Condition Is Met - PASS", () =>
@@ -65,6 +68,7 @@ namespace MyPrecious.Tests.MainTests
         }
 
         [Test]
+        [Category("Regression")]
         [SkipIfEnvironment(EnvironmentType.Stg)]
         public void TestFatalTestingException()
         {

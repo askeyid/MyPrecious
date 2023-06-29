@@ -23,6 +23,7 @@ namespace MyPrecious.Tests.MainTests
         }
 
         [Test]
+        [Category("Smoke")]
         public void AssertLoginUi()
         {
             var loginPage = new LoginPage();
@@ -42,6 +43,7 @@ namespace MyPrecious.Tests.MainTests
         }
 
         [Test]
+        [Category("Regression")]
         [SkipIfEnvironment(EnvironmentType.Stg)]
         public void TestSkipIfEnvironmentAttribute()
         {

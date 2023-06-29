@@ -11,13 +11,13 @@ namespace MyPrecious.Tests.DataSource
             get
             {
                 yield return new TestCaseData(new LoginInfo() { UserName = "vitalii", Password = "tuqd3" })
-                    .SetCategory("Smoke")
+                    .SetCategory("Regression")
                     .SetName("{m}ViaUserNameTest");
                 yield return new TestCaseData(new LoginInfo() { UserName = "vitaliikovaliuk@icloud.com", Password = "tuqd3" })
                     .SetCategory("Regression")
                     .SetName("{m}ViaEmailTest");
                 yield return new TestCaseData(new LoginInfo() { UserName = "fakeuser@icloud.com", Password = "test" })
-                    .SetCategory("Regression")
+                    .SetCategory("Smoke")
                     .SetName("{m}FakeUser");
             }
         }
