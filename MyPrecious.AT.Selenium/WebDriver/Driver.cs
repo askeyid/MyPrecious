@@ -9,13 +9,24 @@ namespace MyPrecious.AT.Selenium.WebDriver
     public static class Driver
     {
         [ThreadStatic] private static IWebDriver _driver;
+        private static readonly object _lockObject = new object();
+
         public static IWebDriver GetDriver()
         {
-            if (_driver != null) return _driver;
+            //if (_driver != null) return _driver;
 
-            _driver = new DriverFactory(DriverSettings.DriverInfo).CreateDriver();
+            //_driver = new DriverFactory(DriverSettings.DriverInfo).CreateDriver();
 
-            return _driver;
+            //return _driver;
+
+            lock (_lockObject)
+            {
+                if (_driver == null)
+                {
+                    _driver = new DriverFactory(DriverSettings.DriverInfo).CreateDriver();
+                }
+                return _driver;
+            }
         }
 
         public static void QuiteDriver()
